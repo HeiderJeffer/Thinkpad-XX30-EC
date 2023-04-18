@@ -1,0 +1,468 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+#
+#
+#
+
+package Symbols;
+use warnings;
+use strict;
+
+sub new($) {
+    my ($class) = @_;
+    my $self = {};
+    bless $self, $class;
+
+    return $self;
+}
+
+sub add {
+    my $self = shift;
+    my $addr = shift;
+    my $name = shift;
+
+    die("bad symbol add $addr $name") if (!defined($name) or !defined($addr));
+
+    # dont overwrite an existing name
+    if (!defined($self->{a2n}{$addr})) {
+        $self->{a2n}{$addr} = $name;
+    }
+    return $self;
+}
+
+sub lookup_addr {
+    my $self = shift;
+    my $addr = shift;
+
+    return $self->{a2n}{$addr};
+}
+
+sub all_addrs {
+    my $self = shift;
+    return sort {$a <=> $b} keys(%{$self->{a2n}});
+}
+
+sub addr2str {
+    my $self = shift;
+    my $addr = shift;
+
+    my $name = $self->lookup_addr($addr);
+    if (!defined($name)) {
+        $name = sprintf("sym_%08x",$addr);
+    }
+    return $name;
+}
+
+1;
+
+package MemRegions;
+use warnings;
+use strict;
+
+use IO::File;
+
+my $debug = 0;
+
+sub new($) {
+    my ($class) = @_;
+    my $self = {};
+    bless $self, $class;
+
+    return $self;
+}
+
+sub add {
+    my $self = shift;
+    my ($phys_addr, $size, $filename, $file_offset, $flags) = @_;
+
+    die("bad MemRegion add") if (
+        !defined($phys_addr) || !defined($size) ||
+        !defined($filename) || !defined($file_offset)
+    );
+
+    my $region;
+    $region->{phys_addr}   = $phys_addr;
+    $region->{size}        = $size;
+    $region->{filename}    = $filename;
+    $region->{file_offset} = $file_offset;
+    $region->{flags}       = $flags;
+
+    push @{$self->{region}}, $region;
+
+    if ($flags & 2) {
+        # anonymous memory has no file backing
+        return;
+    }
+
+    my $fh = IO::File->new($filename, O_RDONLY);
+    if (!defined($fh)) {
+        warn("Could not open $filename\n");
+        exit(1);
+    }
+    $region->{fh} = $fh;
+}
+
+sub _addr2region {
+    my $self = shift;
+    my $phys_addr = shift;
+    my $size = shift;
+
+    my $region;
+    # find the correct region
+    for my $r (@{$self->{region}}) {
+        if ($phys_addr >= $r->{phys_addr} && $phys_addr <= $r->{phys_addr}+$r->{size}) {
+            $region = $r;
+            last;
+        }
+    }
+    return $region;
+}
+
+sub read {
+    my $self = shift;
+    my $phys_addr = shift;
+    my $size = shift;
+
+    my $region = $self->_addr2region($phys_addr,$size);
+    if (!defined($region)) {
+        printf("unhandled address 0x%08x(0x%x)\n",$phys_addr,$size);
+        return undef;
+    }
+
+    my $offset = $phys_addr - $region->{phys_addr};
+    $offset += $region->{file_offset};
+
+    if ($debug) {
+        printf("0x%08x(%x) = 0x%08x (%s)\n",
+            $phys_addr,$size,
+            $offset,
+            $region->{filename},
+        );
+    }
+
+    if ($region->{flags} & 2) {
+        # anonymous memory
+        return chr(0)x$size;
+    }
+
+    $region->{fh}->seek($offset,SEEK_SET);
+    my $buf;
+    $region->{fh}->read($buf,$size);
+
+    return $buf;
+}
+
+sub read_word {
+    my $self = shift;
+    my $phys_addr = shift;
+    my $size = shift;
+
+    my $formatstr;
+    if ($self->{endian} eq 'little') {
+        if ($size == 2) {
+            $formatstr = 'v';
+        } elsif ($size == 4) {
+            $formatstr = 'V';
+        } else {
+            ...;
+        }
+    } else {
+        # must be 'big'
+        if ($size == 2) {
+            $formatstr = 'n';
+        } elsif ($size == 4) {
+            $formatstr = 'N';
+        } else {
+            ...;
+        }
+    }
+
+    my $buf = $self->read($phys_addr,$size);
+    return undef if (length($buf) != $size);
+
+    return unpack($formatstr,$buf);
+}
+
+sub set_endian {
+    my $self = shift;
+    my $endian = shift;
+
+    if ($endian eq 'little' || $endian eq 'big') {
+        $self->{endian} = $endian;
+    } else {
+        die ("bad endianness");
+    }
+}
+
+sub all_baseaddr {
+    my $self = shift;
+    my @starts;
+    for my $r (@{$self->{region}}) {
+        push @starts, $r->{phys_addr};
+    }
+    return @starts;
+}
+
+sub region_size {
+    my $self = shift;
+    my $phys_addr = shift;
+
+    my $size = 1; # a fake size
+    my $region = $self->_addr2region($phys_addr,$size);
+    if (!defined($region)) {
+        return undef;
+    }
+    return $region->{size};
+}
+
+sub region_base {
+    my $self = shift;
+    my $phys_addr = shift;
+
+    my $size = 1; # a fake size
+    my $region = $self->_addr2region($phys_addr,$size);
+    if (!defined($region)) {
+        return undef;
+    }
+    return $region->{phys_addr};
+}
+
+1;
+
+package main;
+use IO::File;
+
+use Data::Dumper;
+$Data::Dumper::Indent = 1;
+$Data::Dumper::Sortkeys = 1;
+$Data::Dumper::Quotekeys = 0;
+
+sub load_configfile {
+    my $db = shift;
+    my $filename = shift;
+
+    my $fh = IO::File->new($filename, O_RDONLY);
+    if (!defined($fh)) {
+        warn("Could not open $filename\n");
+        exit(1);
+    }
+
+    while(<$fh>) {
+        chomp; s/\r//g;
+
+        # remove whitespace
+        s/^\s+//;
+
+        # remove comment lines
+        s/^[#].*//;
+
+        if (m/^include\s+(\S+)/) {
+            load_configfile($db,$1);
+        } elsif (m/^load_memory\s+/) {
+            my @a = split(/\s+/,$_);
+            $db->{regions}->add(
+                eval "$a[1]", eval "$a[2]", $a[3], eval "$a[4]", $a[5]
+            );
+        } elsif (m/^f\W+/) {
+            my @a = split(/\W+/,$_);
+            # 0 1              2 3
+            # f table.00021510 1 0x00021510
+            $db->{symbols}->add(eval "$a[3]", $a[1]);
+        } elsif (m/^sizes\W+/) {
+            my @a = split(/\W+/,$_);
+            $db->{sizes}{$a[1]} = $a[2];
+        } elsif (m/^option\W+/) {
+            my @a = split(/\W+/,$_);
+            $db->{option}{$a[1]} = $a[2];
+        }
+    }
+}
+
+sub validate_pointer {
+    my $db = shift;
+    my $val = shift;
+
+    # Check it is correctly aligned
+    # FIXME - this only works for binary values of alignment
+    if (($val & ($db->{sizes}{align}-1)) != 0) {
+        return undef;
+    }
+
+    if (!defined($db->{regions}->_addr2region($val,$db->{sizes}{ptr}))) {
+        return undef;
+    }
+
+    return $val;
+}
+
+sub find_pointers {
+    my $db = shift;
+
+    for my $start ($db->{regions}->all_baseaddr()) {
+        my $end = $start + $db->{regions}->region_size($start);
+
+        $db->{symbols}->add($start,sprintf("region_%08x",$start));
+
+        my $i = $start;
+        while (($i+$db->{sizes}{ptr}) <= $end ) {
+            my $val = $db->{regions}->read_word($i,$db->{sizes}{ptr});
+            if (validate_pointer($db,$val)) {
+                $db->{symbols}->add($val,sprintf("ptr_%08x",$val));
+
+                $db->{p}{src}{$i} = $val;
+
+                $i += $db->{sizes}{ptr};
+            } else {
+                $i += $db->{sizes}{align};
+            }
+        }
+    }
+}
+
+sub glom_objects {
+    my $db = shift;
+    my @addrs = $db->{symbols}->all_addrs();
+
+    while (@addrs) {
+        my $addr = shift @addrs;
+        my $object;
+        $object->{addr} = $addr;
+        $db->{p}{obj}{$addr} = $object;
+
+        my $next_addr = $addrs[0];
+        $object->{_}{next_addr} = $next_addr;
+        if (!defined($next_addr)) {
+            $next_addr = $addr;
+        }
+
+        my $region_base =  $db->{regions}->region_base($addr);
+        $object->{_}{region_base} = $region_base;
+        # if we know nothing, then we cannot glom anything
+        if (!defined($region_base)) {
+            $object->{size} = "-1";
+            next;
+        }
+
+        my $region_end = $region_base + $db->{regions}->region_size($addr);
+        $object->{_}{region_end} = $region_end;
+        if ($next_addr > $region_end) {
+            $next_addr = $region_end;
+        }
+
+        $object->{_}{glom_end} = $next_addr;
+
+        my $size = $next_addr - $addr;
+        $object->{size} = $size;
+
+        my $offset = 0;
+        while ($addr < $next_addr) {
+            # TODO - handle sizeof(word) != sizeof(ptr) and the addr offsets
+            # this will cause..
+
+            if (defined($db->{p}{src}{$addr})) {
+                $object->{p}{$offset} = $db->{p}{src}{$addr};
+                $object->{d}{$offset} = undef;
+                $addr += $db->{sizes}{ptr};
+                $offset += $db->{sizes}{ptr};
+            } else {
+                my $val = $db->{regions}->read_word($addr,$db->{sizes}{word});
+                $object->{d}{$offset} = $val;
+                $addr += $db->{sizes}{word};
+                $offset += $db->{sizes}{word};
+            }
+        }
+
+    }
+}
+
+sub output_dot {
+    my $db = shift;
+
+    print "digraph structs {\n";
+    print " rankdir=LR;\n";
+    print " node [shape=record];\n";
+    print "\n";
+
+    for my $addr (sort {$a <=> $b} keys(%{$db->{p}{obj}})) {
+        my $object = $db->{p}{obj}{$addr};
+        my $name = $db->{symbols}->addr2str($addr);
+
+        my @ports;
+        push @ports,"<p>$name:";
+        for my $offset (sort {$a <=> $b} keys(%{$object->{d}})) {
+            my $val = $object->{d}{$offset};
+            if (!defined($val)) {
+                # this is a pointer
+                my $dst = $object->{p}{$offset};
+                my $dstname = $db->{symbols}->addr2str($dst);
+                if ($dst != $addr) {
+                    # dont draw a self reference arrow
+                    printf(" %s:p%i -> %s:p;\n",$name,$offset,$dstname);
+                } else {
+                    # but highlight it
+                    $dstname .= "**";
+                }
+                push @ports, sprintf("<p%i>%s",$offset,$dstname);
+            } else {
+                my $valname = $db->{symbols}->lookup_addr($val);
+                if (!defined($valname)) {
+                    $valname = sprintf("0x%08x",$val);
+                }
+                push @ports, sprintf("<p%i>%s",$offset,$valname);
+            }
+        }
+
+        # what is the maximum number of rows per object?
+        my $want_rows = $db->{option}{want_rows};
+
+        if ($want_rows < 2) {
+            @ports = $ports[0];
+        } elsif (scalar(@ports) > $want_rows) {
+            @ports = @ports[0..$want_rows-2];
+            push @ports, sprintf("...size=0x%x",$object->{size});
+        }
+
+        printf(" %s [label=\"%s\"]; // %i\n",
+            $name,
+            join("|",@ports),
+            $object->{size}
+        );
+        printf("\n");
+    }
+    print "}\n";
+}
+
+sub main() {
+    my $configfile = shift @ARGV;
+    if (!defined($configfile)) {
+        die('need configfile');
+    }
+
+    my $db = {};
+
+    # Default config values
+    $db->{sizes}{align} = 4;
+    $db->{sizes}{word} = 4;
+    $db->{sizes}{ptr} = 4;
+    $db->{sizes}{endian} = "little";
+    $db->{option}{want_rows} = 1;
+
+    $db->{symbols} = Symbols->new();
+    $db->{regions} = MemRegions->new();
+
+    load_configfile($db,$configfile);
+
+    $db->{regions}->set_endian($db->{sizes}{endian});
+
+    find_pointers($db);
+    glom_objects($db);
+
+    if (@ARGV) {
+        print Dumper($db);
+    }
+
+    output_dot($db);
+}
+main();
+

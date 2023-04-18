@@ -1,0 +1,32 @@
+
+# ignore the files that we do not have clear permission to distribute
+*.iso
+*.iso.orig
+*.txt.orig
+*.iso*.extract
+*.img
+*.img.orig
+*.img.enc
+*.img.enc.orig
+*.FL1
+*.FL1.orig
+*.FL2
+*.FL2.orig
+*.EXE
+*.EXE.orig
+*.exe.orig
+*.CAP
+*.CAP.orig
+
+# ignore generated files
+*.bat
+*.bat1
+*.report
+.d
+*.pgm
+
+# The destination of the wget hack
+nuvoton-tools/
+
+# Temp are (should be) just junk
+*.tmp

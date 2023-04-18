@@ -1,0 +1,77 @@
+There are several different embedded controller chips that have been
+used over the thinkpad range.  This file lists the ones that we have
+seen and is a place for recording information about them.
+
+It is not intended to be an exhaustive list, as that would require
+schematics, physical inspection or reverse engineering the EC firmware
+for a lot of different models.
+
+ThinkPad T4x/p and R5x/p:
+-------------------------
+    Renesas H8S/2161BV
+    (source: http://forum.thinkpads.com/viewtopic.php?t=20958)
+
+ThinkPad x220:
+--------------
+    Renesas H8S R4F2113NFT-1-GP
+    Looks very similar to the 2161BV
+
+    (source: physical inspection, reverse engineering the EC firmware
+    and the schematics - http://plan9.stanleylieber.com/hardware/thinkpad/x220/x220.schematics.pdf)
+
+ThinkPad xx30 series:
+---------------------
+    SMSC/Microchip MEC1619L-AJZP-GP
+
+    This is a 32-bit ARC core CPU, with most of the firmware written using
+    the ARCompact variant of the instruction set
+
+    MEC product family specs:
+        http://pdf.datasheetarchive.com/indexerfiles/Datasheets-EC3/DSAQ00359444.pdf
+    Microchip product page:
+        https://www.microchip.com/wwwproducts/en/MEC1619
+        (note that microchip does not have a real datasheet available but there is one for the similar MEC1618:
+        http://ww1.microchip.com/downloads/en/DeviceDoc/00002339A.pdf)
+
+    (source: physical inspection, reverse engineering the EC firmware
+    and the schematics - http://plan9.stanleylieber.com/hardware/thinkpad/x230/x230.schematics.pdf)
+
+    This chip has a JTAG programming port, so it is possible to read and
+    write the firmware with an external programmer, which might help in
+    the case of a bricked system.
+    (see discussion: http://notebook1.ru/forma1/viewtopic.php?f=70&t=109179)
+    The procedure for doing this is documented here: https://github.com/taglour/x230-ec-jtag
+
+ThinkPad l420:
+--------------
+    IT8511TE
+
+    This is a 8051 core CPU.
+
+    (source: schematics - http://www.informaticanapoli.it/download/SCHEMIELETTRICI/IBM-LENOVO/Lenovo%20laptop%20motherboard%20schematic%20diagram.pdf)
+
+Thinkpad l430/l530:
+-------------------
+    Nuvoton NPCE885G
+
+    This is a CR16C core CPU.
+
+ThinkPad e330:
+--------------
+    Nuvoton NPCE885G
+
+    (source: EC firmware similarity to the l430)
+
+Thinkpad x250:
+--------------
+    An ARCompact instruction set CPU, so probably a MEC1619
+
+    (source: reverse engineering the EC firmware)
+
+Thinkpad x260:
+--------------
+    An ARCompact instruction set CPU, so probably a MEC1619
+
+    (source: reverse engineering the EC firmware)
+
+

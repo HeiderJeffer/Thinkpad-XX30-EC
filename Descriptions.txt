@@ -1,0 +1,354 @@
+#
+# This file contains the text descriptions of the various iso, FL2, decrypted
+# EC files.
+#
+# The text is used to automatically create the Makefile dependancies needed.
+# Also it is used to add a text description line into the generated output.
+#
+# The sha1sums are used to confirm that the right files have been
+# downloaded.
+#
+# Each line in this file is one entry - or a comment line.  Each entry
+# consists of three major fields, separated by whitespace, with the final
+# field extending to the end of the line (including any additional
+# whitespace)
+#
+# The fields are:
+#       filename    - The filename that this entry describes
+#       tags        - This field is a tag and a value - see below
+#       description - A free form english description
+#
+# The tags field is used to store the checksum and to automatically
+# build the make rules for this file.  It consists of a series of tags
+# values pairs which are separated from other pairs with commas.
+# Each tag is separated from its value with a colon and each value can
+# contain multiple items, separated by semi-colons
+#
+# Available tags names:
+#       sha1    - The value is the known sha1 of the file
+#       sha256  - The value is the known sha256 of the file
+#
+#       rule    - The basename of the make macro for this file
+#       param   - Any parameters that are needed to be passed to the macro
+#
+#       dep     - The file(s) that this file depends on - the first dep
+#                 file is used to build the inverse rule for this line
+#       depe    - Dependancies that are only valid for "extract"
+#       depi    - Dependancies that are only valid for the inverse "insert"
+#
+#       extract - "0" turns off the extract rule
+#       insert  - "0" turns off the insert rule
+#       suffix  - "0" turns off the ".orig" suffix on the extract rule
+#
+
+# The iso images downloadable from Lenovo
+# (these checksums are those found on the Lenovo site)
+
+# These ISO images follow a known pattern and we can extract the required
+# firmware flash files from them
+6duj37uc.iso  sha1:0ac15607379ac71ed041181ab1987b123cb2884d x200 and x200s BIOS 3.10 (7XET60WW) EC 1.04 (7XHT22WW)
+6duj41uc.iso  sha1:016b85296694340cc1b70c956e6fdd775b14d261 x200 and x200s BIOS 3.14 (7XET64WW) EC 1.06 (7XHT24WW)
+6duj47uc.iso  sha1:06a23e319e1028bd7b4ea8358b2335d5e2eb2e64 x200 and x200s BIOS 3.22 (7XET72WW) EC 1.06 (7XHT24WW)
+7buj01uc.iso  sha1:1d9d62cc9536990c86665b8a70347accb7464c89 x60 and x60s BIOS xx (7BET43US) EC 1.01 (7BHT28WW)
+7buj02uc.iso  sha1:cbccae8959996b9c0b22b7b8a0a25079e71edd40 x60 and x60s BIOS xx (7BET44US) EC 1.02 (7BHT29WW)
+7buj03uc.iso  sha1:32295da2c3b61268dde5339d23558da43a2c4e9e x60 and x60s BIOS xx (7BET45US) EC 1.04 (7BHT31WW)
+7buj07uc.iso  sha1:2b9501667b12e3e25c47e8155e12d4e65a559a29 x60 and x60s BIOS xx (7BET49US) EC 1.07 (7BHT34WW)
+7buj08uc.iso  sha1:61dcba8aaa1294aca21e01655106c8734933b2b6 x60 and x60s BIOS xx (7BET50US) EC 1.08 (7BHT35WW)
+7buj12uc.iso  sha1:2720738f1c5ec705a919bb887ead728016397880 x60 and x60s BIOS xx (7BETC3US) EC 1.09 (7BHT36WW)
+7buj13uc.iso  sha1:880edf276da13a7687d54523b046fd5753170d71 x60 and x60s BIOS xx (7BETC4US) EC 1.10 (7BHT37WW)
+7buj19uc.iso  sha1:a3ab400d9bd8d17a3d496cf63c8c7be35fe0eaf8 x60 and x60s BIOS xx (7BETC9US) EC 1.13 (7BHT40WW)
+7buj22uc.iso  sha1:04225220f979f80fa5e4237f11b39358504c9448 x60 and x60s BIOS 2.13 (7BETD2WW) EC 1.13
+7buj23uc.iso  sha1:d2faf4c7c1b34d5656036aabd684040e9dc56905 x60 and x60s BIOS 2.14 (7BETD3WW) EC 1.13
+7buj24uc.iso  sha1:398cb918a2a730bddffa343d306bab0a2f3f8f7d x60 and x60s BIOS 2.15 (7BETD4WW) EC 1.13
+7buj25uc.iso  sha1:73e116b4a4b0d512b88d10db4cfc9949a763f42b x60 and x60s BIOS 2.16 (7BETD5WW) EC 1.13
+7buj26uc.iso  sha1:cbe9f4e70470fdccdf1e336cd5cb133b6f864289 x60 and x60s BIOS 2.17 (7BETD6WW) EC 1.13
+7buj27uc.iso  sha1:ab69ccc0d49f810fd87f43a75d88e483089bdb7f x60 and x60s BIOS 2.18 (7BETD7WW) EC 1.13
+7buj28uc.iso  sha1:8cc957d41a0d4ee4e48e5f39e7c542a499e7fc1c x60 and x60s BIOS 2.19 (7BETD8WW) EC 1.13
+7nuj02uc.iso  sha1:327dec5432fdd9f6c8efc9a36613f90f29ef347b x61 and x61s BIOS 1.03 (7NET22WW) EC 1.02 (7MHT24WW)
+7nuj03uc.iso  sha1:a0ab7cb07098c6a8927bc1dfe2786b04c4dd86df x61 and x61s BIOS 1.05 (7NET24WW) EC 1.02 (7MHT24WW)
+7nuj04uc.iso  sha1:5bce20b0ab8b334c2903aa15c5ea1a9dc8d4d916 x61 and x61s BIOS 1.06 (7NET25WW) EC 1.02 (7MHT24WW)
+7nuj05uc.iso  sha1:0d21b6dc07ad843433d48e5a343883e33b610fbc x61 and x61s BIOS 1.08 (7NET27WW) EC 1.02 (7MHT24WW)
+7nuj06uc.iso  sha1:c74e5f4e763e9b3b71e1a6e23f6b029816082f2d x61 and x61s BIOS 1.10 (7NET29WW) EC 1.02 (7MHT24WW)
+7nuj07uc.iso  sha1:2fbe7ea1d664d77e9772c2c67cf54b234e3baa39 x61 and x61s BIOS 1.11 (7NET30WW) EC 1.02 (7MHT24WW)
+7nuj09uc.iso  sha1:d473bc2f931d54575bb8d6df5c18079463210e4b x61 and x61s BIOS 2.06 (7NETA6WW) EC 1.03 (7MHT25WW)
+7nuj10uc.iso  sha1:6fa445eb2257659fece69007965f47cff1f8ca4a x61 and x61s BIOS 2.07 (7NETA7WW) EC 1.03 (7MHT25WW)
+7nuj12uc.iso  sha1:986c9e28fb763c9d2efb60b4763b36413d488196 x61 and x61s BIOS 2.11 (7NETB1WW) EC 1.03 (7MHT25WW)
+7nuj13uc.iso  sha1:c4b6cbec99e0183cf3dbee2024449777fc2cb86f x61 and x61s BIOS 2.13 (7NETB3WW) EC 1.03 (7MHT25WW)
+7nuj14uc.iso  sha1:8ee159ed67c8db56cba4904d04502ec730a4ed0f x61 and x61s BIOS 2.14 (7NETB4WW) EC 1.03 (7MHT25WW)
+7nuj16uc.iso  sha1:546714b59cfd4641f0a29b04caf5654ce447a8c9 x61 and x61s BIOS 2.16 (7NETB6WW) EC 1.03 (7MHT25WW)
+7nuj18uc.iso  sha1:4ea3da805c24b0e62e5543fa8d169bac683a78ed x61 and x61s BIOS 2.18 (7NETB8WW) EC 1.03 (7MHT25WW)
+7nuj19uc.iso  sha1:bc8a39965e7c824b88aeb93e357e9bbbc4e38536 x61 and x61s BIOS 2.19 (7NETB9WW) EC 1.03 (7MHT25WW)
+7nuj20uc.iso  sha1:ff3999013b482c931b68deb216531c82cbe3299e x61 and x61s BIOS 2.20 (7NETC0WW) EC 1.03 (7MHT25WW)
+7nuj21uc.iso  sha1:acb83d5d700b2e9ab8b925465504390f31bc610c x61 and x61s BIOS 2.21 (7NETC1WW) EC 1.03 (7MHT25WW)
+7nuj22uc.iso  sha1:f05e716f5843184818da21fe459e007c527a42f7 x61 and x61s BIOS 2.22 (7NETC2WW) EC 1.03 (7MHT25WW)
+8duj27us.iso  sha1:856a1a3efee305d335df10932b54aa478f818677 x220 BIOS 1.42 (8DET72WW) EC 1.24 (8DHT34WW)
+8duj30us.iso  sha1:4fb741608ade0885cfaeb3696b212619a86b85ba x220 BIOS 1.45 (8DUJ30UC) EC 1.24 (8DHT34WW)
+8muj19us.iso  sha1:ccbb450d9beaefa8b4c7e9ac559ae8503f8df5db x1, x1 hybrid BIOS 1.71 (8MET71WW) EC 2.02 (8MHT79WW)
+g1uj25us.iso  sha1:759e27829c13d591b097cbda2f34843265ef8813 t430 BIOS 2.57 (G1ET97WW) EC 1.12 (G1HT34WW)
+g1uj38us.iso  sha1:50a2c12ca5ed37ec80c0dbcb4d53f2b49b165d17 t430 BIOS 2.70 (G1ETB0WW) EC 1.13 (G1HT35WW)
+g1uj40us.iso  sha1:8c80f344068291be558803f8444a8d0bffe345c8 t430 BIOS 2.72 (G1ETB2WW) EC 1.13 (G1HT35WW)
+g1uj41us.iso  sha1:b645e616ef558b0adf14c663e9957f9db9835667 t430 BIOS 2.74 (G1ETB4WW) EC 1.13 (G1HT35WW)
+g1uj42us.iso  sha1:FIXME                                    t430 BIOS 2.75 (G1ETB5WW) EC 1.13 (G1HT35WW)
+g1uj43us.iso  sha1:FIXME                                    t430 BIOS 2.76 (G1ETB6WW) EC 1.13 (G1HT35WW)
+g1uj44us.iso  sha1:60c5a5302c978ae0da22f3bcc20cfcb7f8ecac78 t430 BIOS 2.77 (G1ETB7WW) EC 1.13 (G1HT35WW)
+g1uj45us.iso  sha1:1fc4b4485828648bc7a20b9eddfc2268c5f8f17e t430 BIOS 2.78 (G1ETB8WW) EC 1.13 (G1HT35WW)
+g1uj46us.iso  sha1:0dd2d139e1aa61a770e41f691f4fe911d59df1f0 t430 BIOS 2.79 (G1ETB9WW) EC 1.13 (G1HT35WW)
+g1uj47us.iso  sha1:FIXME                                    t430 BIOS 2.80 (G1ETC0WW) EC 1.13 (G1HT35WW)
+g1uj48us.iso  sha1:1ef84813729480bb536e20d0ebef431052b49d31 t430 BIOS 2.81 (G1ETC1WW) EC 1.13 (G1HT35WW)
+g1uj49us.iso  sha1:0b5750cafba0fa16949d6ed410e70cc5f06f93ac t430 BIOS 2.82 (G1ETC2WW) EC 1.14 (G1HT36WW)
+g2uj23us.iso  sha1:d4f9d597ea792f966257c01c3b5442354f0b3cc8 x230 BIOS 2.66 (G2ETA6WW) EC 1.14 (G2HT35WW)
+g2uj24us.iso  sha1:FIXME                                    x230 BIOS 2.67 (G2ETA7WW) EC 1.14 (G2HT35WW)
+g2uj25us.iso  sha1:6a457ffd04d47afd00bdac7c7dd43c6da076029e x230 BIOS 2.68 (G2ETA8WW) EC 1.14 (G2HT35WW)
+g2uj26us.iso  sha256:152818D430D8386A2B99062A2188BE140E62150CC9E39DE66716360A01ABA079 x230 BIOS 2.70 (G2ETB0WW) EC 1.14 (G2HT35WW)
+g2uj28us.iso  sha1:20b88f4e1a9f4330355dcfa461fff1fd74be544a x230 BIOS 2.72 (G2ETB2WW) EC 1.14 (G2HT35WW)
+g2uj29us.iso  sha1:3f6c09262790f2ae4122d8d02ed03c91692ba1a3 x230 BIOS 2.73 (G2ETB3WW) EC 1.14 (G2HT35WW)
+g2uj30us.iso  sha1:b2ce7c604850d263ead783550ab15c517e18bc58 x230 BIOS 2.74 (G2ETB4WW) EC 1.14 (G2HT35WW)
+g2uj31us.iso  sha1:971a9d57a179f4c368c827fd23c6fd5c86a52df7 x230 BIOS 2.75 (G2ETB5WW) EC 1.14 (G2HT35WW)
+g2uj32us.iso  sha1:ee434746cabdb7d8bb8077f79be1429d6dec5696 x230 BIOS 2.76 (G2ETB6WW) EC 1.14 (G2HT35WW)
+g2uj33us.iso  sha1:2a5ba87f9a0128ae4ae1a7f006b5a4ec515d870f x230 BIOS 2.77 (G2ETB7WW) EC 1.15 (G2HT36WW)
+g3uj13us.iso  sha1:433c7e88a6fd690b4aac57b473bb7baf51475d34 l430,l530 BIOS 2.54 (G3ET94WW) EC 1.14 (G3HT40WW)
+g3uj14us.iso  sha1:72d5b5a63354124c02f2c0a22ce35aac0dfc0012 l430,l530 BIOS 2.56 (G3ET96WW) EC 1.14 (G3HT40WW)
+g3uj15us.iso  sha1:c1a7f055fd2765af82b4698b388e56c2f77699b1 l430,l530 BIOS 2.57 (G3ET97WW) EC 1.14 (G3HT40WW)
+g3uj16us.iso  sha1:bf94a1e8e0caa99983c801d747bd4517f905b889 l430,l530 BIOS 2.58 (G3ET98WW) EC 1.14 (G3HT40WW)
+g3uj17us.iso  sha1:68a11ff3f3a2c04fded329312087104eda4af101 l430,l530 BIOS 2.60 (G3ETA0WW) EC 1.14 (G3HT40WW)
+g3uj18us.iso  sha1:8c420932ea9b4c3ced6a3b11e8022e3e165b0e9a l430,l530 BIOS 2.61 (G3ETA1WW) EC 1.14 (G3HT40WW)
+g3uj19us.iso  sha1:d1c39a51253a025383173669dc898ed9b3f4f389 l430,l530 BIOS 2.62 (G3ETA2WW) EC 1.14 (G3HT40WW)
+g3uj20us.iso  sha1:dd01d80656826779c5aba8af8c7ab07cf36753b0 l430,l530 BIOS 2.63 (G3ETA3WW) EC 1.14 (G3HT40WW)
+g3uj21us.iso  sha1:20a619b6aa0d22e9d7883c805e9423712ba2ed12 l430,l530 BIOS 2.64 (G3ETA4WW) EC 1.14 (G3HT40WW)
+g3uj22us.iso  sha1:883ef99c1c934a563a3e119449b108cd0ad35180 l430,l530 BIOS 2.65 (G3ETA5WW) EC 1.14 (G3HT40WW)
+g3uj23us.iso  sha1:656c8bdfb8a185b5757c15ab3a1179d323cf366f l430,l530 BIOS 2.66 (G3ETA6WW) EC 1.14 (G3HT40WW)
+g3uj24us.iso  sha1:f88f7b6b530ad6747405ab8a998055ff978ac9ed l430,l530 BIOS 2.67 (G3ETA7WW) EC 1.14 (G3HT40WW)
+g3uj25us.iso  sha256:caa5494ea71206f253027bea3ae9336c942c4d6f7f041c58f6972a54227cea6d l430,l530 BIOS 2.68 (G3ETA8WW) EC 1.14 (G3HT40WW)
+g3uj26us.iso  sha1:96e14347b7587f42951e49eb2f5fea3123ab56d3 l430,l530 BIOS 2.69 (G3ETA9WW) EC 1.14 (G3HT40WW)
+g3uj27us.iso  sha1:150d158dc6f34dc9b0a7d43faf2ee0d0fab8342e l430,l530 BIOS 2.70 (G3ETB0WW) EC 1.14 (G3HT40WW)
+g3uj28us.iso  sha1:529ba7a4b3d9aa1b0507c6d5dcc5a047ed82c4aa l430,l530 BIOS 2.71 (G3ETB1WW) EC 1.14 (G3HT40WW)
+g3uj29us.iso  sha1:34c6d9ad0f6eb394d3351495398363b907320444 l430,l530 BIOS 2.72 (G3ETB2WW) EC 1.14 (G3HT40WW)
+g3uj30us.iso  sha1:c51b1966ecc302b1a20a08f7f6b98064659abb2f l430,l530 BIOS 2.73 (G3ETB3WW) EC 1.14 (G3HT40WW)
+g3uj31us.iso  sha1:76ff99d2a5bbffa228bba98b2fc13acd4d183e48 l430,l530 BIOS 2.74 (G3ETB4WW) EC 1.14 (G3HT40WW)
+g3uj32us.iso  sha1:ae4bf2fc7441bfaa041ae3f1dff01a7d0d5142e6 l430,l530 BIOS 2.75 (G3ETB5WW) EC 1.14 (G3HT40WW)
+g3uj33us.iso  sha1:cd712f3ff97169f904ed298c1cc770f5064005a1 l430,l530 BIOS 2.76 (G3ETB6WW) EC 1.14 (G3HT40WW)
+g4uj30us.iso  sha1:8673a448abd5cba1a8d7d1cb2eeb7935c7a252cd t530 and t530i BIOS 2.66 (G4ETA6WW) EC 1.13 (G4HT39WW)
+g4uj32us.iso  sha1:f86c7402fb57038143c81aa90ced615e95369844 t530 and t530i BIOS 2.68 (G4ETA8WW) EC 1.13 (G4HT39WW)
+g4uj34us.iso  sha1:TODO
+g4uj35us.iso  sha1:TODO
+g4uj36us.iso  sha1:TODO
+g4uj37us.iso  sha1:570abc63d8c782475ad3b8938945952cd12467c1 t530 and t530i BIOS 2.73 (G4ETB3WW) EC 1.13 (G4HT39WW)
+g4uj38us.iso  sha1:49dc772e34a1cd673922bc978fa29af39854641e t530 and t530i BIOS 2.74 (G4ETB4WW) EC 1.13 (G4HT39WW)
+g4uj39us.ISO  sha1:FIXME
+g4uj40us.iso  sha1:34c8b16d95001b2b97404306aed9eec0925d10d7 t530 and t530i BIOS 2.76 (G4ETB6WW) EC 1.13 (G4HT39WW)
+g4uj41us.iso  sha1:37ae85e6c301cd45cc5ceee51f25c3b64143ecbc t530 and t530i BIOS 2.77 (G4ETB7WW) EC 1.14 (G4HT40WW)
+g5uj28us.iso  sha1:4ed559b7c66957c3c66ca3f8c85c37a0e181da2a w530 BIOS 2.65 (G5ETA5WW) EC 1.13 (G4HT39WW)
+g5uj30us.iso  sha1:d714e0f431ffb316bebb72d39ecdb0a19ade6836 w530 BIOS 2.67 (G5ETA7WW) EC 1.13 (G4HT39WW)
+g5uj32us.iso  sha1:FIXME w530 BIOS 2.69 (G5ETA8WW) EC 1.13 (G4HT39WW)
+g5uj33us.iso  sha1:FIXME w530 BIOS 2.70 (G5ETB0WW) EC 1.13 (G4HT39WW)
+g5uj34us.iso  sha1:FIXME w530 BIOS 2.71 (G5ETB1WW) EC 1.13 (G4HT39WW)
+g5uj35us.iso  sha1:efc6a8473d1a6379b9ec1573cf54095db10d583c w530 BIOS 2.72 (G5ETB2WW) EC 1.13 (G4HT39WW)
+g5uj36us.iso  sha1:f0bd34614aed820d23d7f2ff86dddf93512f83d7 w530 BIOS 2.73 (G5ETB3WW) EC 1.13 (G4HT39WW)
+g5uj37us.iso  sha1:8e86b911a024b5e3f38d5165d12231dcd12695d5 w530 BIOS 2.74 (G5ETB4WW) EC 1.13 (G4HT39WW)
+g5uj38us.iso  sha1:2db9a0f4b94b6eba0fdf7d4d9b6589346b3ef125 w530 BIOS 2.75 (G5ETB5WW) EC 1.13 (G4HT39WW)
+g5uj39us.iso  sha1:c0a725e8c7a48c86eedfff299113a0d1538db52b w530 BIOS 2.76 (G5ETB6WW) EC 1.14 (G4HT40WW)
+g6uj24us.iso  sha1:9dba2945eff1eb387bc24f479e68eb401e3cc4ee x1 Carbon (Type 34xx - Gen1) BIOS 2.76 (G6ETB6WW) EC 1.06 (G6HT24WW)
+g7uj18us.iso  sha1:418bdab59ed0cf8da52078c1f2949f3fec441f0b t430s BIOS 2.64 (G7ETA4WW) EC 1.15 (G7HT39WW)
+g7uj19us.iso  sha1:be900c38e185831ae5fa93266a806bb394ba7ac7 t430s BIOS 2.65 (G7ETA5WW) EC 1.15 (G7HT39WW)
+g7uj21us.iso  sha1:58a90d4db266e0a7aba430d06ff68937e26b11b3 t430s BIOS 2.67 (G7ETA7WW) EC 1.15 (G7HT39WW)
+g7uj22us.iso  sha1:TODO
+g7uj23us.iso  sha1:TODO
+g7uj24us.iso  sha1:TODO
+g7uj25us.iso  sha1:e9ea2fbf3cbe3762a05e5a16d25227f1e64c0ee7 t430s BIOS 2.72 (G7ETB2WW) EC 1.15 (G7HT39WW)
+g7uj26us.iso  sha1:FIXME
+g7uj27us.iso  sha1:FIXME
+g7uj28us.iso  sha1:ace55c1a1fa87f3ca5140ef67d565ff9f863020a t430s BIOS 2.75 (G7ETB5WW) EC 1.15 (G7HT39WW)
+g8uj31us.iso  sha1:443bf6090f2d621369e4a4dce6ff7e151dcac901 x131e BIOS 2.98 (G8ETB1WW) EC 2.02 (G8HT52WW)
+gcuj24us.iso  sha1:468e70cf4253d216bfa877ac31cc2c4ae322ca16 x230t BIOS 2.64 (GCETA4WW) EC 1.14 (GCHT25WW)
+gcuj25us.iso  sha1:09c1a0b14ba443fe1ab252023106624401782461 x230t BIOS 2.65 (GCETA5WW) EC 1.14 (GCHT25WW)
+gcuj26us.iso  sha1:8b9ffa924c92df33fe673c64766501a8bd83d4cb x230t BIOS 2.66 (GCETA6WW) EC 1.14 (GCHT25WW)
+gcuj27us.iso  sha1:FIXME
+gcuj28us.iso  sha1:FIXME
+gcuj29us.iso  sha1:FIXME
+gcuj30us.iso  sha1:FIXME
+gcuj31us.iso  sha1:FIXME
+gcuj32us.iso  sha1:1eb8a86936f534899ee95b7374be7ba4a1f1a2a3 x230t BIOS 2.73 (GCETB3WW) EC 1.14 (GCHT25WW)
+gcuj33us.iso  sha1:ebf7976fd1bda1287065f83ac7d980389b29692a x230t BIOS 2.74 (GCETB4WW) EC 1.14 (GCHT25WW) **BROKEN EC BLOB** Do not Use
+gcuj34us.iso  sha1:ba849e7343e4efc199e3a65ec6c701b42dae70c3 x230t BIOS 2.75 (GCETB5WW) EC 1.15 (GCHT26WW)
+giuj26us.iso  sha1:c5a87023e977e17a15eca26e8027bd0f2eefd568 x240 BIOS 2.39 (GIET89WW) EC 1.17 (GIHT32WW)
+giuj29us.iso  sha1:6a87e3377140620130e154f488d9116e18f55ec4 x240 BIOS 2.42 (GIET92WW) EC 1.17 (GIHT32WW)
+gluj42us.iso  sha1:5d56eddac59df8b0fe2dda5f8f8d8ea540b85075 t440p BIOS 2.54 (GLETA0WW) EC 1.13 (GLHT30WW)
+gluj43us.iso  sha1:353f1f993743a1c4a1da96a098b61a77873aa024 t440p BIOS 2.55 (GLETA1WW) EC 1.13 (GLHT30WW)
+gruj26us.iso  sha1:89a3b3e364f37694bf514e01f9c3e2eda33a59e8 x1 Carbon (Type 20A7, 20A8) BIOS 1.29 (GRET52WW) EC 1.19 (GRHT38WW)
+h1uj53us.exe  sha1:8056b5c5867a16797ae9e62e7cd968d09284ff42 b480,b580 BIOS 1.16 (H1ET73WW,H5ET73WW) EC 1.13 (H1EC33WW,H5EC33WW)
+h3uj52wd.iso  sha1:d5812f96df663ae2d5e86df50fdfe8b02145970a e330 BIOS 1.06 (H3ET69WW) EC 1.17 (H3EC34WW)
+h3uj54wd.iso  sha1:854e4bcd7d51036296b0182be39265269ff24816 e330 BIOS 1.09 (H3ET72WW) EC 1.17 (H3EC34WW)
+h3uj75wd.iso  sha1:7073a59aa52d8d2adc8da1f7097bdfc5c6b6a676 e330 BIOS 1.12 (H3ET75WW) EC 1.18 (H3EC35WW)
+h3uj76wd.iso  sha1:8c8f46e117ee5423b62e421423531e3c11d9a40c e330 BIOS 1.14 (H3ET76WW) EC 1.18 (H3EC35WW)
+h3uj77wd.iso  sha1:079a1a3c77fd5ac6a59e68235d5e5e9b326deae2 e330 BIOS 1.14 (H3ET77WW) EC 1.18 (H3EC35WW)
+h3uj78wd.iso  sha1:d96a7c3c740eab23f7f1287b28c95df1d60467f2 e330 BIOS 1.15 (H3ET78WW) EC 1.18 (H3EC35WW)
+h3uj79wd.iso  sha1:f1404fd6724c0faa5b57aee0d81c60908b9917c6 e330 BIOS 1.16 (H3ET79WW) EC 1.18 (H3EC35WW)
+h6uja0wd.iso  sha1:19a05355c793b3f776c3130caa5f10e371f530c0 T430u BIOS 2.18 (H6ETA0WW) EC 2.01 (H6HT54WW)
+h9et75ww.zip  sha1:d81c145b371cf77abe6ae00d35d37491715feecd b590,b490 BIOS ?.? (H9ET75WW) EC 1.01 (H9EC08WW)
+h9et92ww.exe  sha1:c1a3ba9282fe48a9e6f69e4dd32537c10a710e78 b590,b490 BIOS ?.? (H9ET92WW) EC 1.02 (H9EC09WW)
+heuj19wd.iso  sha1:0c060fa56828d09918ff51d61c26a5ec7f7bcff8 E431/E538 BIOS 1.33 (HEET52WW) EC 1.31 (HEHT50WW)
+n10ur10w.iso  sha1:0e4c4ffb99146e50867dc1345ee2ef88c60ea192 x250 BIOS 1.21 (N10ET42W) EC 1.16 (N10HT17W)
+n14ur15w.iso  sha1:e106b024b1d448234e5ea958b0e8e93bbda1a543 x1 Carbon (Type 20BS, 20BT) BIOS 1.16 (N14ET38W) EC 1.09 (N14HT36W)
+n1mur06w.iso  sha1:e2bed755c065daf83cabc130b8d65c08e6a6a391 x1 Carbon (Type 20HQ, 20HR, 20K3, 20K4) BIOS 1.20 (N1MET35W) EC 1.14 (N1MHT25W)
+n1qur08w.iso  sha256:3bd8dd95a312707dbedd6385b3ae5a1ee2aab9eb69279542eaf1ef15c4fd5837 T470 BIOS 1.32 (N1QET57W), EC 1.14 (N1QHT32W)
+n1qur09w.iso  sha256:ad5fddecf44f4a2063fc5430ddfafadf7f1eb1d3f1549fbb4237c8a394d22829 T470, 25 BIOS 1.39 (N1QET64W), EC 1.25 (N1QHT43W)
+n1qur11w.iso  sha1:FIXME                                    T470, 25 BIOS 1.42 (N1QET67W) EC 1.27 (N1QHT45W)
+n1qur12w.iso  sha1:FIXME                                    T470, 25 BIOS 1.43 (N1QET68W) EC 1.29 (N1QHT47W)
+n1qur13w.iso  sha1:FIXME                                    T470, 25 BIOS 1.44 (N1QET69W) EC 1.30 (N1QHT48W)
+n1qur14w.iso  sha1:fea0d271a23548adb5d11f3c16b4e016be3869a5 T470, 25 BIOS 1.46 (N1QET71W) EC 1.30 (N1QHT48W)
+n1uur12w.iso  sha1:82628c7b7ed2064f4c272440b72cbb38a88b18d8 P51 BIOS 1.20 (N1UET46W) EC 1.07 (N1UHT24W)
+n20ur02w.iso  sha1:FIXME                                    x280 BIOS 1.08 (N20ET23W) EC 1.03 (N20HT16W)
+n20ur03w.iso  sha1:FIXME                                    x280 BIOS 1.12 (N20ET27W) EC 1.04 (N20HT17W)
+n20ur04w.iso  sha1:8ca1d873aeca5ce87d67f795739f8cc95f0c519f x280 BIOS 1.14 (N20ET29W) EC 1.04 (N20HT17W)
+n22ur04w.iso  sha1:b557d7bbe881cc682b7504364097b64c0dec1c01 t480s BIOS 1.11 (N22ET34W) EC 1.07 (N22HT22W)
+n24ur01w.iso  sha1:FIXME                                    t480 BIOS 1.07 (N24ET32W) EC 1.06 (N24HT21W)
+n24ur03w.iso  sha1:FIXME                                    t480 BIOS 1.11 (N24ET36W) EC 1.08 (N24HT23W)
+n24ur04w.iso  sha1:134b239e4ce4c9c2d1f5f8f645f279c162fc5f3e t480 BIOS 1.12 (N24ET37W) EC 1.08 (N24HT23W)
+n2jur16w.iso  sha1:FIXME                                    T490s, X390 BIOS 1.51 (N2JET73W) EC 1.12 (N2JHT28W)
+n2jur17w.iso  sha1:be7598ac64e9c3f2aab60ca890175d0adac010b9 T490s, X390 BIOS 1.55 (N2JET77W) EC 1.13 (N2JHT29W)
+n30ur13w.iso  sha1:1b358b9485f3a42c226456ccb038a9e6f7cd6284 p15
+n37ur08w.iso  sha1:98884f9b57470a7e7063e3988d8d22007dc9d6dc p15g2 BIOS 1.20 (N37ET39W) EC 1.09 (N37HT27W)
+r02uj46d.iso  sha1:876a68add32d9c961cbdf80c74b88f92a66443cf x260 BIOS 1.19 (R02ET46W) EC 1.11 (R02HT29W)
+r0fuj15wd.iso sha1:bab0722d72375d1c9190b2c47ab7b4eb4c0dfde0 t470p BIOS 1.22 (R0FET42W) EC 1.04 (R0FHT16W)
+r0iuj09wd.iso sha1:21b3abf69b9ee7ecf12fe0880564312122b1ff75 x270 BIOS 1.16 (R0IET38W) EC 1.12 (R0IHT30W)
+r0iuj10wd.iso sha1:FIXME                                    x270 BIOS 1.17 (R0IET39W) EC 1.13 (R0IHT31W)
+r0iuj11wd.iso sha1:FIXME                                    x270 BIOS 1.18 (R0IET40W) EC 1.13 (R0IHT31W)
+r0iuj12wd.iso sha1:FIXME                                    x270 BIOS 1.19 (R0IET41W) EC 1.13 (R0IHT31W)
+r0iuj13wd.iso sha1:FIXME                                    x270 BIOS 1.20 (R0IET42W) EC 1.13 (R0IHT31W)
+r0iuj14wd.iso sha1:FIXME                                    x270 BIOS 1.21 (R0IET43W) EC 1.13 (R0IHT31W)
+r0iuj16wd.iso sha1:FIXME                                    x270 BIOS 1.23 (R0IET45W) EC 1.14 (R0IHT32W)
+r0iuj17wd.iso sha1:FIXME                                    x270 BIOS 1.24 (R0IET46W) EC 1.15 (R0IHT35W)
+r0iuj19wd.iso sha1:FIXME                                    x270 BIOS 1.26 (R0IET48W) EC 1.15 (R0IHT35W)
+#    20?      sha1:FIXME                                    x270 BIOS 1.27 (R0IET49W) EC 1.17 (R0IHT35W) "Dropped"
+r0iuj21wd.iso sha1:3765d1715f001ddae982682f0189b49c2b04bf3a x270 BIOS 1.28 (R0IET50W) EC 1.15 (R0IHT35W)
+
+# Next, sections for ISO images that do not follow a usable pattern
+# (and cannot be currently automatically extracted / examined)
+
+# no FL2 file (all in UEFI Capsule), FAT_OFFSET is 79872
+h3uj04wd.iso  sha1:3bbf65b61d1e2ed806ea6cf40b97d24c090c00dc e330 and v480s
+j4uj62wd.iso  sha1:4421bd4c21a1309f83c919bfffc1beaf67502334 L440, L540 BIOS 1.73 (J4ET73WW) EC 1.08 (J4EHT27WW)
+j4uj64wd.iso  sha1:4b2682bf11d31e0ff9e4cf4ec5e3372b715c7841 L440, L540 BIOS 1.78 (J4ET78WW) EC 1.09 (J4EHT28WW)
+j4uj65wd.iso  sha1:386353b39ec54f0feb5160cc6edc41b3def14dca L440, L540 BIOS 1.81 (J4ET81WW) EC 1.10 (J4EHT29WW, maybe J4HT29WW)
+j4uj75wd.iso  sha1:3ff5025a4a5f62f461467f7726e5b2c1fa119b5b L440, L540 BIOS 1.93 (J4ET93WW) EC 1.11 (J4EHT30WW, maybe J4HT30WW)
+
+# The firmware files from inside the ISO images
+b580.h1et73ww.s0AH1000.EXE  rule:EXE,dep:h1uj53us.exe,depi:h1uj53us.exe.bat1;g3uj13us.iso.orig,param:\$$0AH1000.FL1;g3uj13us.iso  b580 BIOS H1ET73WW Flash File
+b590.H9ET92WW.CAP           rule:CAP,dep:h9et92ww.exe,depi:h9et92ww.exe.bat;g3uj13us.iso.orig;h9et75ww.zip.orig,param:H9ET92WW.CAP;g3uj13us.iso;h9et75ww.zip  b590 BIOS H9ET75WW Flash File
+e330.H3EC35WW.s01H3000.FL1  rule:FL2,dep:h3uj76wd.iso,depi:h3uj76wd.iso.bat1;h3uj52wd.iso.orig,param:01H3000.FL1;h3uj52wd.iso e330 BIOS 1.16 Flash File
+l430.G3HT40WW.s01D4000.FL1  rule:FL2,dep:g3uj13us.iso,depi:g3uj13us.iso.bat1,param:01D4000.FL1 l430 BIOS 2.54 Flash File
+l440.J4HT27WW.s0AJ4000.FL1  rule:FL2,dep:j4uj62wd.iso,param:0AJ4000.FL1                        l440 BIOS 1.73 Flash File
+l440.J4HT28WW.s0AJ4000.FL1  rule:FL2,dep:j4uj64wd.iso,param:0AJ4000.FL1                        l440 BIOS 1.78 Flash File
+l440.J4HT29WW.s0AJ4000.FL1  rule:FL2,dep:j4uj65wd.iso,param:0AJ4000.FL1                        l440 BIOS 1.81 Flash File
+l440.J4HT30WW.s0AJ4000.FL1  rule:FL2,dep:j4uj75wd.iso,param:0AJ4000.FL1                        l440 BIOS 1.93 Flash File
+p15.N30HT33W.s0AN3000.FL2   rule:FL2,dep:n30ur13w.iso,param:0AN3000.FL2                        p15
+p15g2.N37HT27W.s0AN3700.FL2  rule:FL2,dep:n37ur08w.iso,param:0AN3700.FL2                       p15g2
+p51.N1UHT24W.s0AN1U00.FL2   rule:FL2,dep:n1uur12w.iso,param:0AN1U00.FL2                        p51 EC 1.07 Flash File
+t430.G1HT34WW.s01D2000.FL2  rule:FL2,dep:g1uj25us.iso,depi:g1uj25us.iso.bat,param:01D2000.FL2  t430 EC 1.12 Flash File
+t430.G1HT35WW.s01D2000.FL2  rule:FL2,dep:g1uj48us.iso,depi:g1uj48us.iso.bat,param:01D2000.FL2  t430 EC 1.13 Flash File
+t430.G1HT36WW.s01D2000.FL2  rule:FL2,dep:g1uj49us.iso,depi:g1uj49us.iso.bat,param:01D2000.FL2  t430 EC 1.14 Flash File (signed)
+t430s.G7HT39WW.s01D8000.FL2 rule:FL2,dep:g7uj28us.iso,depi:g7uj28us.iso.bat,param:01D8000.FL2  t430s EC 1.15 Flash File
+t430u.H6HT54WW.s0AH6000.FL1  rule:FL2,dep:h6uja0wd.iso,param:0ah6000.fl1                       t430u BIOS 2.18 Flash File
+t440p.GLHT30WW.s01E0000.FL2 rule:FL2,dep:gluj43us.iso,depi:gluj43us.iso.bat,param:01E0000.FL2  t440p EC 1.13 Flash File
+t470.N1QHT57W.s0AN1Q00.FL2  rule:FL2,dep:n1qur08w.iso,depi:n1qur08w.iso.bat,param:0AN1Q00.FL2  t470 EC 1.32 Flash File
+t470p.R0FHT16W.s0AR0F00.FL2 rule:FL2,dep:r0fuj15wd.iso,depi:r0fuj15wd.iso.bat,param:0AR0F00.FL2 t470p EC 1.04 Flash File
+t480.N24HT23W.s0AN2400.FL2  rule:FL2,dep:n24ur04w.iso,depi:n24ur04w.iso.bat,param:0AN2400.FL2  t480 EC 1.08 Flash File
+t480s.N22HT22W.s0AN2200.FL2 rule:FL2,dep:n22ur04w.iso,depi:n22ur04w.iso.bat,param:0AN2200.FL2  t480s EC 1.07 Flash File
+t530.G4HT39WW.s01D5100.FL2  rule:FL2,dep:g4uj38us.iso,depi:g4uj38us.iso.bat,param:01D5100.FL2  t530 EC 1.13 Flash File
+t530.G4HT40WW.s01D5100.FL2  rule:FL2,dep:g4uj41us.iso,depi:g4uj41us.iso.bat,param:01D5100.FL2  t530 EC 1.14 Flash File (signed)
+w530.G4HT39WW.s01D5200.FL2  rule:FL2,dep:g5uj37us.iso,depi:g5uj37us.iso.bat,param:01D5200.FL2  w530 EC 1.13 Flash File
+w530.G4HT40WW.s01D5200.FL2  rule:FL2,dep:g5uj39us.iso,depi:g5uj39us.iso.bat,param:01D5200.FL2  w530 EC 1.14 Flash File (signed)
+x131e.G8HT52WW.s0AG8000.FL1 rule:FL2,dep:g8uj31us.iso,param:0AG8000.FL1                        x131e BIOS 2.98 Flash File
+#x131e.G8HT52WW.s0ag9000.FL1 rule:FL2,dep:g8uj31us.iso,param:0ag9000.FL1                        x131e g9 BIOS 2.98 Flash File
+x1cg1.G6HT24WW.s01D7000.FL2 rule:FL2,dep:g6uj24us.iso,param:01D7000.FL2                        x1c Gen 1 EC 1.06 Flash File
+x200.7XHT22WW.s01B9000.FL2  rule:FL2multi2,dep:6duj37uc.iso,depi:6duj37uc.iso.bat,param:01B9000.FL2;01B9100.FL2         x200 EC 1.04 Flash File
+x200.7XHT24WW.s01B9000.FL2  rule:FL2multi2,dep:6duj47uc.iso,depi:6duj47uc.iso.bat,param:01B9000.FL2;01B9100.FL2         x200 EC 1.06 Flash File
+x220.8DHT34WW.s01CB000.FL2  rule:FL2,dep:8duj27us.iso,param:01CB000.FL2                        x220 EC 1.24 Flash File
+x230.G2HT35WW.s01D3000.FL2  rule:FL2,dep:g2uj31us.iso,depi:g2uj31us.iso.bat,param:01D3000.FL2  x230 EC 1.14 Flash File
+x230.G2HT36WW.s01D3000.FL2  rule:FL2,dep:g2uj33us.iso,depi:g2uj33us.iso.bat,param:01D3000.FL2  x230 EC 1.15 Flash File (signed)
+x230t.GCHT25WW.s01DA000.FL2 rule:FL2,dep:gcuj32us.iso,depi:gcuj32us.iso.bat,param:01DA000.FL2  x230t EC 1.14 Flash File
+x230t.GCHT26WW.s01DA000.FL2 rule:FL2,dep:gcuj34us.iso,depi:gcuj34us.iso.bat,param:01DA000.FL2  x230t EC 1.15 Flash File (signed)
+x240.GIHT32WW.s01DE000.FL2  rule:FL2,dep:giuj26us.iso,param:01DE000.FL2                        x240 EC 1.17 Flash file
+x250.N10HT17W.s01E5000.FL2  rule:FL2,dep:n10ur10w.iso,param:01E5000.FL2                        x250 EC 1.16 Flash File
+x260.R02HT29W.s0AR0200.FL2  rule:FL2,dep:r02uj46d.iso,param:0AR0200.FL2                        x260 EC 1.11 Flash File
+x270.R0IHT50W.s0AR0I00.FL2  rule:FL2,dep:r0iuj21wd.iso,param:0AR0I00.FL2                       x270 EC 1.15 Flash File
+x280.N20HT29W.s0AN2000.FL2  rule:FL2,dep:n20ur04w.iso,param:0AN2000.FL2                        x280 EC 1.04 Flash File
+x390.N2JET77P.s0AN2J00.FL2  rule:FL2,dep:n2jur17w.iso,param:P/.0AN2J00.FL2                     x390 EC 1.13 Flash File
+x60.7BHT28WW.s01A5000.FL2   rule:oldISO,dep:7buj01uc.iso,param:01A5000.FL2                     x60 EC 1.01 Flash File
+x60.7BHT29WW.s01A5000.FL2   rule:oldISO,dep:7buj02uc.iso,param:01A5000.FL2                     x60 EC 1.02 Flash File
+x60.7BHT31WW.s01A5000.FL2   rule:oldISO,dep:7buj03uc.iso,param:01A5000.FL2                     x60 EC 1.04 Flash File
+x60.7BHT34WW.s01A5000.FL2   rule:oldISO,dep:7buj07uc.iso,param:01A5000.FL2                     x60 EC 1.07 Flash File
+x60.7BHT35WW.s01A5000.FL2   rule:oldISO,dep:7buj08uc.iso,param:01A5000.FL2                     x60 EC 1.08 Flash File
+x60.7BHT36WW.s01A5000.FL2   rule:oldISO,dep:7buj12uc.iso,param:01A5000.FL2                     x60 EC 1.09 Flash File
+x60.7BHT37WW.s01A5000.FL2   rule:oldISO,dep:7buj13uc.iso,param:01A5000.FL2                     x60 EC 1.10 Flash File
+x60.7BHT40WW.s01A5000.FL2   rule:oldISO,dep:7buj28uc.iso,param:01A5000.FL2                     x60 EC 1.13 Flash File
+x61.7MHT24WW.s01B2000.FL2   rule:oldISO,dep:7nuj07uc.iso,param:01B2000.FL2                     x61 EC 1.02 Flash File
+x61.7MHT25WW.s01B2000.FL2   rule:oldISO,dep:7nuj22uc.iso,param:01B2000.FL2                     x61 EC 1.03 Flash File
+
+# TODO
+# - the deps on the .iso.bat files are ugly
+# - the entries missing the .iso.bat dep will have a build error on insert
+#   but they are for systems that we dont know how to successfully build
+#   a working FL2 file anyway.
+
+
+# The actual EC firmware extracted from the BIOS firmware file
+b580.H1ET73WW.img     rule:IMGnuvoton,dep:b580.h1et73ww.s0AH1000.EXE  b580 EC 1.13 (not encrypted) (CR16CPlus cpu)
+b590.H9ET92WW.img     rule:IMGnuvoton,dep:b590.H9ET92WW.CAP         b590 EC 1.02 (not encrypted) (CR16CPlus cpu)
+e330.H3EC35WW.img     rule:IMGnuvoton,dep:e330.H3EC35WW.s01H3000.FL1  e330 EC 1.18 (not encrypted) (CR16CPlus cpu)
+l430.G3HT40WW.img     rule:IMGnuvoton,dep:l430.G3HT40WW.s01D4000.FL1  l430 EC 1.14 (not encrypted) (CR16CPlus cpu)
+l440.J4HT29WW.img     rule:IMGnoenc,dep:l440.J4HT29WW.s0AJ4000.FL1  l440 EC 1.10
+l440.J4HT30WW.img     rule:IMGnoenc,dep:l440.J4HT30WW.s0AJ4000.FL1  l440 EC 1.11
+p15.N30HT33W.img      rule:IMGnoenc,dep:p15.N30HT33W.s0AN3000.FL2   p15 EC
+p51.N1UHT24W.img      rule:IMGnoenc,dep:p51.N1UHT24W.s0AN1U00.FL2   p51 EC 1.07
+t430.G1HT34WW.img     rule:IMG,dep:t430.G1HT34WW.s01D2000.FL2       t430 EC 1.12 (decrypted) (ARCompact cpu)
+t430.G1HT35WW.img     rule:IMG,dep:t430.G1HT35WW.s01D2000.FL2       t430 EC 1.13 (decrypted) (ARCompact cpu)
+t430.G1HT36WW.img     rule:IMG,dep:t430.G1HT36WW.s01D2000.FL2       t430 EC 1.14 (decrypted) (ARCompact cpu)
+t430s.G7HT39WW.img    rule:IMG,dep:t430s.G7HT39WW.s01D8000.FL2      t430s EC 1.15 (decrypted) (ARCompact cpu)
+t440p.GLHT30WW.img    rule:IMGnoenc,dep:t440p.GLHT30WW.s01E0000.FL2 t440p EC 1.13 (encrypted) (ARCompact cpu)
+t470.N1QHT57W.img     rule:IMGnoenc,dep:t470.N1QHT57W.s0AN1Q00.FL2  t470 EC 1.32 (may be wrong) (ARCompact cpu)
+t470p.R0FHT16W.img    rule:IMGnoenc,dep:t470p.R0FHT16W.s0AR0F00.FL2 t470 EC 1.04 (may be wrong) (ARCompact cpu)
+t480.N24HT23W.img     rule:IMGnoenc,dep:t480.N24HT23W.s0AN2400.FL2  t480 EC 1.08 (may be wrong) (ARCompact cpu)
+t480s.N22HT22W.img    rule:IMGnoenc,dep:t480s.N22HT22W.s0AN2200.FL2 t480s EC 1.07 (may be wrong) (ARCompact cpu)
+t530.G4HT39WW.img     rule:IMG,dep:t530.G4HT39WW.s01D5100.FL2       t530 EC 1.13 (decrypted) (ARCompact cpu)
+t530.G4HT40WW.img     rule:IMG,dep:t530.G4HT40WW.s01D5100.FL2       t530 EC 1.14 (decrypted) (ARCompact cpu)
+w530.G4HT39WW.img     rule:IMG,dep:w530.G4HT39WW.s01D5200.FL2       w530 EC 1.13 (decrypted) (ARCompact cpu)
+w530.G4HT40WW.img     rule:IMG,dep:w530.G4HT40WW.s01D5200.FL2       w530 EC 1.14 (decrypted) (ARCompact cpu)
+x1cg1.G6HT24WW.img    rule:IMG,dep:x1cg1.G6HT24WW.s01D7000.FL2      x1c Gen 1 EC 1.06 (decrypted) (ARCompact cpu)
+x200.7XHT22WW.img     rule:IMGnoenc,dep:x200.7XHT22WW.s01B9000.FL2  x200 EC 1.04 (not encrypted) (H8300 cpu)
+x200.7XHT24WW.img     rule:IMGnoenc,dep:x200.7XHT24WW.s01B9000.FL2  x200 EC 1.06 (not encrypted) (H8300 cpu)
+x220.8DHT34WW.img.enc rule:IMGnoenc,dep:x220.8DHT34WW.s01CB000.FL2  x220 EC 1.24 (encrypted) (H8300 cpu)
+x230.G2HT35WW.img     rule:IMG,dep:x230.G2HT35WW.s01D3000.FL2       x230 EC 1.14 (decrypted) (ARCompact cpu)
+x230.G2HT36WW.img     rule:IMG,dep:x230.G2HT36WW.s01D3000.FL2       x230 EC 1.15 (decrypted) (ARCompact cpu)
+x230t.GCHT25WW.img    rule:IMG,dep:x230t.GCHT25WW.s01DA000.FL2      x230t EC 1.14 (decrypted) (ARCompact cpu)
+x230t.GCHT26WW.img    rule:IMG,dep:x230t.GCHT26WW.s01DA000.FL2      x230t EC 1.15 (decrypted) (ARCompact cpu)
+x240.GIHT32WW.img.enc rule:IMGnoenc,dep:x240.GIHT32WW.s01DE000.FL2  x240 EC 1.17 (encrypted) (ARCompact cpu)
+x250.N10HT17W.img.enc rule:IMGnoenc,dep:x250.N10HT17W.s01E5000.FL2  x250 EC 1.16 (encrypted) (ARCompact cpu)
+x260.R02HT29W.img     rule:IMGnoenc,dep:x260.R02HT29W.s0AR0200.FL2  x260 EC 1.11 (not encrypted) (ARCompact cpu)
+x270.R0IHT50W.img     rule:IMGnoenc,dep:x270.R0IHT50W.s0AR0I00.FL2  x270 EC 1.15 (not encrupted) (ARCompact cpu)
+x280.N20HT29W.img     rule:IMGnoenc,dep:x280.N20HT29W.s0AN2000.FL2  x280 EC 1.04 (not encrupted) (ARCompact cpu)
+x390.N2JET77P.img     rule:IMGnoenc,dep:x390.N2JET77P.s0AN2J00.FL2  x390 EC 1.13 (not encrypted) (ARCompact cpu)
+x60.7BHT28WW.img      rule:IMGnoenc,dep:x60.7BHT28WW.s01A5000.FL2   x60 EC 1.01
+x60.7BHT29WW.img      rule:IMGnoenc,dep:x60.7BHT29WW.s01A5000.FL2   x60 EC 1.02
+x60.7BHT31WW.img      rule:IMGnoenc,dep:x60.7BHT31WW.s01A5000.FL2   x60 EC 1.04
+x60.7BHT34WW.img      rule:IMGnoenc,dep:x60.7BHT34WW.s01A5000.FL2   x60 EC 1.07
+x60.7BHT35WW.img      rule:IMGnoenc,dep:x60.7BHT35WW.s01A5000.FL2   x60 EC 1.08
+x60.7BHT36WW.img      rule:IMGnoenc,dep:x60.7BHT36WW.s01A5000.FL2   x60 EC 1.09
+x60.7BHT37WW.img      rule:IMGnoenc,dep:x60.7BHT37WW.s01A5000.FL2   x60 EC 1.10
+x60.7BHT40WW.img      rule:IMGnoenc,dep:x60.7BHT40WW.s01A5000.FL2   x60 EC 1.13
+x61.7MHT24WW.img      rule:IMGnoenc,dep:x61.7MHT24WW.s01B2000.FL2   x61 EC 1.02
+x61.7MHT25WW.img      rule:IMGnoenc,dep:x61.7MHT25WW.s01B2000.FL2   x61 EC 1.03
+
+
+# The end-user visible, nicely named iso images
+patched.b580.iso   rule:niceISO,dep:h1uj53us.exe,suffix:0,insert:0  for patching Thinkpad B480, B580, V480, V480c, V580, V580c (Battery only)
+patched.b590.iso   rule:niceISO,dep:h9et92ww.exe,suffix:0,insert:0  for patching Thinkpad B490, B590 (Battery only)
+patched.e330.iso   rule:niceISO,dep:h3uj76wd.iso,suffix:0,insert:0  for patching Thinkpad E330, V480s (Battery only)
+patched.l430.iso   rule:niceISO,dep:g3uj13us.iso,suffix:0,insert:0  for patching Thinkpad L430, L530 (Battery and Keyboard)
+patched.t430.iso   rule:niceISO,dep:g1uj48us.iso,suffix:0,insert:0  for patching Thinkpad T430
+patched.t430s.iso  rule:niceISO,dep:g7uj28us.iso,suffix:0,insert:0  for patching Thinkpad T430s
+patched.t530.iso   rule:niceISO,dep:g4uj38us.iso,suffix:0,insert:0  for patching Thinkpad T530
+patched.t530i.iso  rule:niceISO,dep:g4uj38us.iso,suffix:0,insert:0  for patching Thinkpad T530i
+patched.w530.iso   rule:niceISO,dep:g5uj37us.iso,suffix:0,insert:0  for patching Thinkpad W530
+patched.x230.iso   rule:niceISO,dep:g2uj31us.iso,suffix:0,insert:0  for patching Thinkpad X230
+patched.x230t.iso  rule:niceISO,dep:gcuj32us.iso,suffix:0,insert:0  for patching Thinkpad X230t

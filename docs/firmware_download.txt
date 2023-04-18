@@ -1,0 +1,39 @@
+This is a list of the Lenovo pages that can be checked to find possible BIOS
+and EC updates.  It is not completely clear if Lenovo publishes all new
+versions to the same page URL, so these may not link to the latest software,
+but they will provide a reasonable starting point for any search for the
+latest versions.
+
+These pages provide the the description, checksum and binaries for the
+bootable BIOS update CD images for both the current and historical releases.
+
+b580    FIXME
+b590    FIXME
+e330    https://support.lenovo.com/hk/en/downloads/DS031908
+e531    FIXME
+l430    https://pcsupport.lenovo.com/us/en/downloads/DS029124
+l440    https://pcsupport.lenovo.com/gb/en/downloads/DS037264
+p15     https://pcsupport.lenovo.com/us/en/downloads/ds546302
+p15g2   https://pcsupport.lenovo.com/us/en/downloads/ds551321
+p51     https://pcsupport.lenovo.com/us/en/downloads/DS121296
+t430    https://pcsupport.lenovo.com/gb/en/downloads/DS029252
+t430s   https://pcsupport.lenovo.com/gb/en/downloads/DS029724
+t430u   https://pcsupport.lenovo.com/gb/en/downloads/ds031725
+t440p   https://pcsupport.lenovo.com/gb/en/downloads/DS037575
+t470    https://pcsupport.lenovo.com/us/en/downloads/DS120429
+t470p   https://pcsupport.lenovo.com/us/en/downloads/DS120707
+t480    https://pcsupport.lenovo.com/us/en/downloads/DS502355
+t530    https://pcsupport.lenovo.com/gb/en/downloads/DS029246
+w530    https://pcsupport.lenovo.com/gb/en/downloads/DS029169
+x131e   https://pcsupport.lenovo.com/us/en/downloads/DS029771
+x220    https://support.lenovo.com/hk/en/downloads/DS018807
+x230    https://pcsupport.lenovo.com/hk/en/downloads/DS029187
+x230i   https://pcsupport.lenovo.com/us/en/downloads/ds029187
+x230t   https://pcsupport.lenovo.com/gb/en/downloads/DS029683
+x240    https://pcsupport.lenovo.com/us/en/downloads/DS035950
+x250    https://pcsupport.lenovo.com/us/en/downloads/DS102288
+x260    https://pcsupport.lenovo.com/us/en/downloads/DS105890
+x270    https://pcsupport.lenovo.com/us/en/downloads/DS120442
+x390    https://pcsupport.lenovo.com/us/en/downloads/ds539062
+x60     https://support.lenovo.com/hk/en/downloads/migr-63145
+x61     https://support.lenovo.com/hk/en/downloads/migr-67983

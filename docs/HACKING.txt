@@ -1,0 +1,108 @@
+This repository also contains number of tools and utilities for examining
+and modifying Thinkpad Embedded Controller firmware.
+
+Including:
+*   radare projects with partial disassembly of several thinkpads EC firmware
+*   scripts for downloading the ISO image and extracting the firmware
+*   script for patching the firmware
+*   documentation on the tables found in the firmware (TODO)
+
+Radare:
+-------
+To use the radare projects, first install the project files:
+
+    make install.radare.projects
+
+Then ensure you have the image file(s):
+
+    make x220.8DHT34WW.img.enc.orig x230.G2HT35WW.img x260.R02HT29W.img
+
+Then start radare with one of these projects:
+
+    radare -p x230.G2HT35WW
+
+Makefile targets for patching:
+------------------------------
+
+If you expect to do development work, the following make targets are
+probably useful:
+
+    To list the available raw image files and FL2 files, check the
+    Descriptions.txt file for the list of known image names.  You
+    can also get a list of the "*.img.d" directories that contain
+    patches with this make command:
+
+        make list_images
+
+    To fetch the firmware from Lenovo, extract, decrypt and patch
+    it, ready for more patching:
+
+        make x230.G2HT35WW.img
+
+    To just get the decrypted firmware file (with the same filename as
+    above), before any patches applied:
+
+        make x230.G2HT35WW.img.prepatch
+
+    To create a new FL2, ready for flashing:
+
+        make x230.G2HT35WW.s01D3000.FL2
+
+    To update your firmware, copy the FL2 file generated above and
+    the dosflash.exe utility to a DOS boot disk and then use a command
+    similar to:
+
+
+        dosflash /sd /ipf ec /file s01D3000.FL2
+
+    To insert the firmware image back into the bootable cdrom and boot this
+    in an emulator for testing:
+
+        make patched.x230.iso.test
+
+    To extract the DOS disk image from the ISO and test that in the emulator
+    instead:
+
+        make patched.x230.img.test
+
+Extracting the ISO images:
+--------------------------
+
+While examining a new ISO image, it is often useful to extract its
+entire contents.  Due to the way these images are constructed, it is
+not straight forward to get the data out.
+
+The Lenovo ISO image is a iso9660 filesystem image with /no/ files
+in it!  There is a El-Torrito standard boot descriptor in this image,
+and it defines a hard drive image for booting.  This hard drive image
+is a DOS MBR partitioned disk, with one partition.  The partition is a
+FAT16 filesystem, containing the actual files used in the BIOS update.
+
+To access the FAT16 filesystem, the byte offset of the filesystem
+is calculated (via a process of unwrapping and decoding each layers
+described above).  So far, every ISO image file from Lenovo that has been
+checked has used the same offset, so this has been hardcoded in the
+Makefile as the "FAT_OFFSET" variable.
+
+To extract the files for examination, a make target is available which
+can be used on any *.iso.orig or *.iso file.  e.g:
+
+    make g2uj25us.iso.orig.extract
+    make patched.x230.iso.extract
+
+In the case where a file needs to be modified inside the image, it is
+highly recommended to use the mtools "mcopy" utility to copy files back
+into the image - this is the safest method and does not require any
+elevated priviledges or run the risks of mounting foreign filesystems.
+
+If you find you do need to directly mount the filesystem, the following
+command can be used as a starting point:
+
+    sudo mount -o loop,offset=$FAT_OFFSET $ISOFILE $MNTPNT
+
+
+References:
+-----------
+    http://forum.thinkpads.com/viewtopic.php?f=69&t=120776
+    http://www.zmatt.net/unlocking-my-lenovo-laptop-part-3/
+    http://plan9.stanleylieber.com/hardware/thinkpad/x230/x230.schematics.pdf
