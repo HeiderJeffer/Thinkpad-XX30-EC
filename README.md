@@ -1,7 +1,13 @@
 
 COMPATIBILTY WARNING:
----------------------
 
+<body>
+<img src = "https://github-vistors-counter.onrender.com/github?username=https://github.com/HeiderJeffer/Thinkpad-XX30-EC/" alt = "Visitors-Counter"/>
+</body>
+
+
+
+---------------------
 As the result of CVE-2019-6171, newer Lenovo firmware update files have
 added a digital signature.  If you upgrade to locked version you will not
 be able to patch your EC without downgrading it.
