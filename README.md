@@ -4,7 +4,8 @@
 <body>
 <img src = "https://github-vistors-counter.onrender.com/github?username=https://github.com/HeiderJeffer/Thinkpad-XX30-EC/" alt = "Visitors-Counter"/>
 </body>
----------------------
+
+
 
 
 COMPATIBILTY WARNING:
